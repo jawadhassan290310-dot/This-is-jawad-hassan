@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jawad Hassan | Portfolio</title>
+  <meta
+    name="description"
+    content="Jawad Hassan - Student, Computer Science Learner, and Web Enthusiast portfolio."
+  />
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root {
+      --bg: #0b1020;
+      --bg-2: #121a33;
+      --surface: rgba(255, 255, 255, 0.1);
+      --surface-2: rgba(255, 255, 255, 0.06);
+      --text: #e9eefc;
+      --muted: #b8c2de;
+      --primary: #7c9cff;
+      --primary-2: #6ef3d6;
+      --border: rgba(255, 255, 255, 0.2);
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    }
+
+    [data-theme="light"] {
+      --bg: #f3f6ff;
+      --bg-2: #e8edff;
+      --surface: rgba(255, 255, 255, 0.75);
+      --surface-2: rgba(255, 255, 255, 0.55);
+      --text: #121a33;
+      --muted: #49516c;
+      --primary: #2f5bff;
+      --primary-2: #00b894;
+      --border: rgba(18, 26, 51, 0.1);
+      --shadow: 0 12px 24px rgba(47, 91, 255, 0.14);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      background: linear-gradient(135deg, var(--bg), var(--bg-2));
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+      overflow-x: hidden;
+      transition: background 0.4s ease, color 0.4s ease;
+    }
+
+    /* Optional subtle animated background "particles" */
+    .bg-blobs {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .blob {
+      position: absolute;
+      border-radius: 999px;
+      filter: blur(30px);
+      opacity: 0.26;
+      animation: float 12s ease-in-out infinite;
+    }
+
+    .blob.one {
+      width: 260px;
+      height: 260px;
+      background: #6a8dff;
+      top: 10%;
+      left: -5%;
+    }
+
+    .blob.two {
+      width: 320px;
+      height: 320px;
+      background: #00d3a7;
+      bottom: 8%;
+      right: -6%;
+      animation-delay: 2s;
+    }
+
+    .blob.three {
+      width: 220px;
+      height: 220px;
+      background: #9b7dff;
+      top: 55%;
+      left: 38%;
+      animation-delay: 4s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-20px) scale(1.08); }
+    }
+
+    .container {
+      width: min(1100px, 92%);
+      margin: 0 auto;
+    }
+
+    .glass {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    header {
+      position: sticky;
+      top: 16px;
+      z-index: 1000;
+      margin-top: 16px;
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 18px;
+    }
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: 0.4px;
+      font-size: 1.05rem;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      opacity: 0.9;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+      transform: translateY(-2px);
+    }
+
+    .nav-toggle,
+    .theme-toggle {
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+      color: var(--text);
+      border-radius: 10px;
+      padding: 8px 12px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .theme-toggle:hover,
+    .nav-toggle:hover {
+      transform: translateY(-2px);
+      background: var(--surface);
+    }
+
+    .nav-toggle {
+      display: none;
+    }
+
+    section {
+      padding: 86px 0 24px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 30px;
+      align-items: center;
+      min-height: 78vh;
+    }
+
+    .hero-card {
+      padding: 36px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 6px 12px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--primary-2);
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-weight: 600;
+      margin-bottom: 24px;
+      font-size: 1.07rem;
+      min-height: 28px;
+    }
+
+    .hero p {
+      color: var(--muted);
+      margin-bottom: 28px;
+      max-width: 60ch;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
+      border-radius: 12px;
+      padding: 11px 18px;
+      font-weight: 600;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      color: white;
+      background: linear-gradient(135deg, var(--primary), #8a6eff);
+      box-shadow: 0 10px 22px rgba(83, 103, 255, 0.33);
+    }
+
+    .btn-secondary {
+      color: var(--text);
+      border-color: var(--border);
+      background: var(--surface-2);
+    }
+
+    .btn:hover {
+      transform: translateY(-3px) scale(1.01);
+    }
+
+    .hero-aside {
+      padding: 28px;
+    }
+
+    .stat {
+      margin-bottom: 16px;
+      padding: 12px;
+      border-radius: 12px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+    }
+
+    .stat h3 {
+      font-size: 1.3rem;
+      margin-bottom: 4px;
+    }
+
+    .stat p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-bottom: 0;
+    }
+
+    h2 {
+      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+      margin-bottom: 12px;
+    }
+
+    .section-intro {
+      color: var(--muted);
+      max-width: 70ch;
+      margin-bottom: 24px;
+    }
+
+    .skills-grid,
+    .projects-grid {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .skill-card,
+    .project-card {
+      padding: 20px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+    }
+
+    .skill-card:hover,
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 14px 22px rgba(0, 0, 0, 0.2);
+    }
+
+    .skill-card h3,
+    .project-card h3 {
+      margin-bottom: 8px;
+      font-size: 1.03rem;
+    }
+
+    .skill-card p,
+    .project-card p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .project-links {
+      margin-top: 14px;
+      display: flex;
+      gap: 12px;
+    }
+
+    .project-links a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .contact-card {
+      padding: 26px;
+    }
+
+    .contact-list {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .contact-list a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .contact-list a:hover {
+      color: var(--primary-2);
+    }
+
+    footer {
+      margin: 48px 0 26px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+      .skills-grid,
+      .projects-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 700px) {
+      .nav-toggle {
+        display: inline-flex;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: calc(100% + 8px);
+        right: 0;
+        flex-direction: column;
+        width: min(230px, 84vw);
+        padding: 12px;
+        border-radius: 14px;
+        border: 1px solid var(--border);
+        background: rgba(16, 23, 46, 0.96);
+        transform-origin: top right;
+        transform: scale(0.9);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+      }
+
+      [data-theme="light"] .nav-links {
+        background: rgba(255, 255, 255, 0.96);
+      }
+
+      .nav-links.open {
+        opacity: 1;
+        transform: scale(1);
+        pointer-events: auto;
+      }
+
+      .navbar {
+        position: relative;
+      }
+
+      .skills-grid,
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card,
+      .hero-aside,
+      .contact-card {
+        padding: 22px;
+      }
+    }
+  </style>
+</head>
+<body data-theme="dark">
+  <div class="bg-blobs" aria-hidden="true">
+    <div class="blob one"></div>
+    <div class="blob two"></div>
+    <div class="blob three"></div>
+  </div>
+
+  <header class="container">
+    <nav class="navbar glass">
+      <a href="#home" class="brand">Jawad Hassan</a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <div style="display: flex; gap: 8px;">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">Light Mode</button>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">Menu</button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section id="home" class="hero">
+      <article class="hero-card glass">
+        <span class="tag">Welcome to my portfolio</span>
+        <h1>Hi, I'm <span style="color: var(--primary-2);">Jawad Hassan</span></h1>
+        <p class="subtitle" id="typingSubtitle"></p>
+        <p>
+          I am a student and passionate web enthusiast focused on learning modern web development.
+          I enjoy creating clean, user-friendly websites and continuously improving my coding skills.
+        </p>
+
+        <div class="btn-group">
+          <a class="btn btn-primary" href="#projects">View Projects</a>
+          <a class="btn btn-secondary" href="Jawad-Hassan-CV.pdf" download>Download CV</a>
+        </div>
+      </article>
+
+      <aside class="hero-aside glass">
+        <div class="stat">
+          <h3>4+</h3>
+          <p>Core skills</p>
+        </div>
+        <div class="stat">
+          <h3>3+</h3>
+          <p>Sample projects</p>
+        </div>
+        <div class="stat">
+          <h3>100%</h3>
+          <p>Learning mindset</p>
+        </div>
+      </aside>
+    </section>
+
+    <section id="about">
+      <h2>About Me</h2>
+      <p class="section-intro glass" style="padding: 20px;">
+        I'm Jawad Hassan, a Computer Science learner who enjoys understanding how websites work from
+        structure to styling and interaction. My goal is to build practical projects, strengthen my problem-solving
+        skills, and become a professional developer through consistent learning and hands-on practice.
+      </p>
+    </section>
+
+    <section id="skills">
+      <h2>Skills</h2>
+      <p class="section-intro">Technologies and areas I am currently focused on:</p>
+      <div class="skills-grid">
+        <article class="skill-card">
+          <h3>HTML</h3>
+          <p>Building semantic and accessible webpage structures.</p>
+        </article>
+        <article class="skill-card">
+          <h3>CSS</h3>
+          <p>Creating modern responsive layouts and clean visual designs.</p>
+        </article>
+        <article class="skill-card">
+          <h3>JavaScript</h3>
+          <p>Adding interactivity, DOM manipulation, and dynamic behavior.</p>
+        </article>
+        <article class="skill-card">
+          <h3>Computer Basics</h3>
+          <p>Strong foundational understanding of systems and digital workflows.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <p class="section-intro">A few sample projects that reflect my learning journey:</p>
+      <div class="projects-grid">
+        <article class="project-card">
+          <h3>Student Task Manager</h3>
+          <p>A simple to-do web app with add, edit, and delete features for daily tasks.</p>
+          <div class="project-links">
+            <a href="#">Live Demo</a>
+            <a href="#">Code</a>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <h3>Weather Dashboard</h3>
+          <p>A weather information page using API data with a clean and responsive interface.</p>
+          <div class="project-links">
+            <a href="#">Live Demo</a>
+            <a href="#">Code</a>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <h3>Portfolio Template</h3>
+          <p>A reusable personal portfolio template built with modern design principles.</p>
+          <div class="project-links">
+            <a href="#">Live Demo</a>
+            <a href="#">Code</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="contact-card glass">
+        <h2>Contact</h2>
+        <p class="section-intro" style="margin-bottom: 0;">
+          Let's connect! Feel free to reach out for collaboration or learning opportunities.
+        </p>
+        <ul class="contact-list">
+          <li>Email: <a href="mailto:jawadHassan290310@gmail.com">jawadHassan290310@gmail.com</a></li>
+          <li>GitHub: <a href="https://github.com/" target="_blank" rel="noopener noreferrer">jawadHassan290310@gmail.com</a></li>
+          <!-- <li>LinkedIn: <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">linkedin.com/in/yourprofile</a></li> -->
+        </ul>
+      </div>
+    </section>
+
+    <footer>Created by Jawad Hassan</footer>
+  </main>
+
+  <!-- GSAP CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+  <script>
+    // -----------------------------
+    // Mobile menu toggle
+    // -----------------------------
+    const navToggle = document.getElementById("navToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    navToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("open");
+    });
+
+    // Close mobile menu when a nav link is clicked
+    document.querySelectorAll(".nav-links a").forEach((link) => {
+      link.addEventListener("click", () => navLinks.classList.remove("open"));
+    });
+
+    // -----------------------------
+    // Dark / Light mode toggle
+    // -----------------------------
+    const themeToggle = document.getElementById("themeToggle");
+    const savedTheme = localStorage.getItem("theme");
+
+    function applyTheme(theme) {
+      document.body.setAttribute("data-theme", theme);
+      themeToggle.textContent = theme === "dark" ? "Light Mode" : "Dark Mode";
+      localStorage.setItem("theme", theme);
+    }
+
+    applyTheme(savedTheme || "dark");
+
+    themeToggle.addEventListener("click", () => {
+      const current = document.body.getAttribute("data-theme");
+      applyTheme(current === "dark" ? "light" : "dark");
+    });
+
+    // -----------------------------
+    // Typing effect in hero subtitle
+    // -----------------------------
+    const typingElement = document.getElementById("typingSubtitle");
+    const phrases = [
+      "Student",
+      "Computer Science Learner",
+      "Web Enthusiast"
+    ];
+
+    let phraseIndex = 0;
+    let letterIndex = 0;
+    let isDeleting = false;
+
+    function typeEffect() {
+      const currentPhrase = phrases[phraseIndex];
+      const displayedText = currentPhrase.substring(0, letterIndex);
+      typingElement.textContent = displayedText;
+
+      if (!isDeleting && letterIndex < currentPhrase.length) {
+        letterIndex++;
+      } else if (isDeleting && letterIndex > 0) {
+        letterIndex--;
+      } else if (!isDeleting && letterIndex === currentPhrase.length) {
+        isDeleting = true;
+        setTimeout(typeEffect, 1000);
+        return;
+      } else {
+        isDeleting = false;
+        phraseIndex = (phraseIndex + 1) % phrases.length;
+      }
+
+      const speed = isDeleting ? 45 : 80;
+      setTimeout(typeEffect, speed);
+    }
+
+    typeEffect();
+
+    // -----------------------------
+    // GSAP entrance animations
+    // -----------------------------
+    gsap.from(".navbar", {
+      y: -40,
+      opacity: 0,
+      duration: 0.8,
+      ease: "power2.out"
+    });
+
+    gsap.from(".hero-card", {
+      x: -40,
+      opacity: 0,
+      duration: 0.9,
+      delay: 0.2,
+      ease: "power2.out"
+    });
+
+    gsap.from(".hero-aside .stat", {
+      x: 30,
+      opacity: 0,
+      duration: 0.6,
+      stagger: 0.15,
+      delay: 0.4,
+      ease: "power2.out"
+    });
+
+    // Animate cards when they appear in viewport
+    const animatedItems = document.querySelectorAll(
+      "#about .section-intro, .skill-card, .project-card, .contact-card"
+    );
+
+    const observer = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            gsap.from(entry.target, {
+              y: 24,
+              opacity: 0,
+              duration: 0.7,
+              ease: "power2.out"
+            });
+            obs.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    animatedItems.forEach((item) => observer.observe(item));
+  </script>
+</body>
+</html>
